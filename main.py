@@ -25,12 +25,14 @@ def play_2note(note1,note2, length,  track,base_num1=0,base_num2=0, delay=0, vel
                          velocity=round(64*velocity), time=0, channel=channel))
 
 
+
+scale_para=[0, 2, 2, 1, 2, 2, 2, 1]
+
 mid = MidiFile()
 track = MidiTrack()
 track2 = MidiTrack()
 mid.tracks.append(track)
 mid.tracks.append(track2)
-
 track.append(Message('program_change', program=17, time=0))
 track2.append(Message('program_change', program=2, time=0))
 
@@ -38,11 +40,11 @@ playtime = int(input("intput playtime:"))
 baseNote = int(input("intput baseNote:"))
 
 for i in range(0,playtime):
- play_2note(4,1, 2,track, base_num1=0,base_num2=0, channel=1,base_note = baseNote)
- play_2note(7,4, 2, track,base_num1=-1,base_num2=0, channel=1,base_note = baseNote)
- play_2note(3,7, 4,track,  base_num1=0,base_num2=-1,channel=1,base_note = baseNote)
- play_note(2, 2, track2,base_num=-2 , channel=1,base_note = baseNote)
- play_note(5, 2, track2, base_num=-2 ,channel=1,base_note = baseNote)
- play_note(1, 4, track2,base_num=-2,  channel=1,base_note = baseNote)
+ play_2note(4,1, 2,track, base_num1=0,base_num2=0, channel=1,base_note = baseNote,scale_para=scale_para)
+ play_2note(7,4, 2, track,base_num1=-1,base_num2=0, channel=1,base_note = baseNote,scale_para=scale_para)
+ play_2note(3,7, 4,track,  base_num1=0,base_num2=-1,channel=1,base_note = baseNote,scale_para=scale_para)
+ play_note(2, 2, track2,base_num=-2 , channel=1,base_note = baseNote,scale_para=scale_para)
+ play_note(5, 2, track2, base_num=-2 ,channel=1,base_note = baseNote,scale_para=scale_para)
+ play_note(1, 4, track2,base_num=-2,  channel=1,base_note = baseNote,scale_para=scale_para)
 
 mid.save('output-mido.mid')
